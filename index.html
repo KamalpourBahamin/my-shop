@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>فروشگاه - هدر صورتی</title>
-  <link rel="stylesheet" href="Iwill.css">
+  <link rel="stylesheet" href="/Iwill.css">
 
-    <style>:root{
+  <style>    :root{
       --pink-100: #fff0f6;
       --pink-300: #ffd6e8;
       --pink-500: #ff82b0;
@@ -223,35 +223,7 @@
       justify-content:center;
       min-height:120px;
     }
-    .watch-frame{
-      width:85%;
-      max-width:420px;
-      border-radius:14px;
-      padding:18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.35));
-      box-shadow: 0 10px 40px rgba(10,10,20,0.06);
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:center;
-    }
-    .watch{
-      width:120px;
-      height:120px;
-      border-radius:12px;
-      background:linear-gradient(135deg,#fff,#f7f7f8);
-      display:grid;
-      place-items:center;
-      transform:rotate(-8deg);
-      box-shadow: 0 8px 24px rgba(20,14,40,0.06);
-    }
-    .watch.right{
-      transform:rotate(8deg) scale(1.05);
-      width:140px;
-      height:140px;
-      opacity:0.98;
-    }
- 
+
     /* Responsive */
     @media (max-width:880px){
       .center-controls{ display:none; } /* hide nav on small screens */
@@ -333,70 +305,43 @@ body {
 
 
 
-/* Section Style */
 .products-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  background-color: #ffe6f0; /* صورتی کمرنگ */
-}
- 
-/* Product Card */
-.product-card {
-  background-color: #fff;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s;
-}
- 
-.product-card:hover {
-  transform: translateY(-5px);
-}
- 
-/* Section Style */
-.products-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* سه ستون */
-  gap: 25px; /* فاصله بین محصولات */
-  padding: 30px;
-  justify-items: center;
-  background-color: #ffeaf3; /* صورتی خیلی کمرنگ */
-}
- 
-/* Product Card */
-.product-card {
-  width: 90%; /* از چپ و راست کوچیک‌تر */
-  max-width: 250px;
-  background-color: #fff;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(255, 51, 102, 0.15);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
- 
-.product-card:hover {
-  transform: scale(1.03); /* از دو طرف بزرگ‌تر (ملایم) */
-  box-shadow: 0 6px 16px rgba(255, 51, 102, 0.25);
-}
- 
-/* Image Wrapper to Fix Size */
-.image-wrapper {
-  width: 100%;
-  height: 160px; /* ارتفاع ثابت */
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 40px 10px;
   background-color: #fff5fa;
 }
  
-.image-wrapper img {
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  animation: fadeIn 1s ease;
+}
+ 
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(255, 51, 102, 0.15);
+  overflow: hidden;
+  width: 250px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+ 
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(255, 51, 102, 0.25);
+}
+ 
+.product-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+ 
+.product-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -404,90 +349,336 @@ body {
 }
  
 .product-card:hover img {
-  transform: scale(1.07); /* افکت ملایم فقط روی عرض */
+  transform: scale(1.1);
 }
  
-/* Product Info */
-.product-info {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  flex-grow: 1;
-}
- 
-.product-name {
-  font-size: 14px;
-  margin: 4px 0 2px 0;
-  color: #333;
-  text-align: center;
-}
- 
-.product-price {
-  font-size: 13px;
-  color: #ff3366;
-  margin-bottom: 6px;
-  text-align: center;
-  font-weight: bold;
-}
- 
-/* Product Actions */
 .product-actions {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
   display: flex;
-  justify-content: space-between;
-  gap: 6px;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+ 
+.product-card:hover .product-actions {
+  opacity: 1;
+  transform: translateY(0);
 }
  
 .product-actions button {
-  flex: 1;
-  padding: 6px;
+  background-color: #ff3366;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  color: #fff;
+  padding: 6px 10px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.2s ease, transform 0.1s ease;
-  font-size: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
  
-.favorite-btn {
-  background-color: #ffd6e6;
+.product-actions button:hover {
+  background-color: #ff5c85;
+  transform: scale(1.1);
+}
+ 
+.product-info {
+  padding: 15px;
+}
+ 
+.product-info h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
   color: #ff3366;
 }
  
-.favorite-btn:hover {
-  background-color: #ffb3d1;
+.product-info .price {
+  font-weight: bold;
+  color: #444;
 }
  
-.add-cart-btn {
+/* ✨ انیمیشن ملایم ورود */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+ 
+/* 📱 ریسپانسیو */
+@media (max-width: 600px) {
+  .product-card {
+    width: 46%;
+  }
+}
+
+/* 📱 نسخه موبایل اصلاح‌شده برای نمایش دقیق عکس */
+@media (max-width: 768px) {
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 8px;
+  }
+ 
+  .product-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+ 
+  .product-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+ 
+  .product-card h3 {
+    font-size: 13px;
+    margin: 6px 0 3px;
+    text-align: center;
+  }
+ 
+  .price {
+    font-size: 12px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+ 
+  .product-icons {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    gap: 4px;
+  }
+ 
+  .icon-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}
+ 
+ 
+body {
+  margin: 0;
+  font-family: "Vazir", sans-serif;
+  background-color: #fffafb;
+  color: #333;
+}
+ 
+/* بخش‌های کلی */
+.section-title {
+  text-align: center;
+  font-size: 20px;
+  color: #ff3366;
+  margin-bottom: 15px;
+}
+ 
+/* 💅 دسته‌بندی‌ها */
+.categories {
+  padding: 30px 10px;
+  background-color: #fff0f6;
+}
+ 
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+ 
+.category-card {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 120px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(255, 51, 102, 0.15);
+  transition: transform 0.2s ease;
+}
+ 
+.category-card:hover {
+  transform: scale(1.05);
+}
+ 
+.category-card img {
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+  object-fit: cover;
+}
+ 
+.category-card p {
+  margin: 8px 0;
+  font-weight: bold;
+  color: #ff3366;
+}
+ 
+/* 💖 پیشنهاد ویژه */
+.special-offer {
+  text-align: center;
+  padding: 40px 10px;
+  background: linear-gradient(135deg, #ffb3d1, #ffe6f0);
+  border-radius: 20px;
+  margin: 20px;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255, 51, 102, 0.3);
+}
+ 
+.special-offer h2 {
+  margin-bottom: 5px;
+}
+ 
+.special-offer button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: #ff3366;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+ 
+/* ✨ بنر میانی */
+.mid-banner {
+  background: url('https://via.placeholder.com/1000x300/ffe6f0/ff3366?text=Banner') center/cover;
+  padding: 60px 10px;
+  text-align: center;
+  color: #ff3366;
+  position: relative;
+}
+ 
+.mid-banner .banner-text {
+  background-color: rgba(255, 255, 255, 0.7);
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 15px;
+}
+ 
+.mid-banner button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: #ff3366;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+}
+ 
+/* 💬 نظرات مشتریان */
+.testimonials {
+  padding: 40px 10px;
+  background-color: #fff5fa;
+}
+ 
+.testimonial-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+ 
+.testimonial-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(255, 51, 102, 0.15);
+  width: 200px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s ease;
+}
+ 
+.testimonial-card:hover {
+  transform: scale(1.04);
+}
+ 
+.testimonial-card span {
+  display: block;
+  margin-top: 5px;
+  color: #ff3366;
+  font-weight: bold;
+}
+ 
+/* 🌟 ویژگی‌های فروشگاه */
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #ffeaf3;
+  padding: 25px 10px;
+}
+ 
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ff3366;
+  font-weight: bold;
+}
+ 
+/* 💌 خبرنامه */
+.newsletter {
+  text-align: center;
+  padding: 40px 10px;
+  background-color: #fff0f6;
+}
+ 
+.newsletter-input {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+ 
+.newsletter-input input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ffb3d1;
+  outline: none;
+  width: 200px;
+}
+ 
+.newsletter-input button {
   background-color: #ff3366;
   color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
+  cursor: pointer;
 }
  
-.add-cart-btn:hover {
-  background-color: #e62e5c;
+/* 🌸 فوتر */
+.footer {
+  text-align: center;
+  background-color: #ff3366;
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
 }
  
-.product-actions button:active {
-  transform: scale(0.96);
+.footer .socials {
+  margin-top: 8px;
 }
  
-/* Responsive Layout */
-@media (max-width: 900px) {
-  .products-section {
-    grid-template-columns: repeat(2, 1fr); /* دو تا در هر ردیف */
+.footer .socials a {
+  margin: 0 5px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+ 
+/* 📱 ریسپانسیو */
+@media (max-width: 600px) {
+  .category-card {
+    width: 45%;
   }
-}
- 
-@media (max-width: 350px) {
-  .products-section {
-    grid-template-columns: 1fr; /* یکی در هر ردیف */
-  }
-  .product-card {
-    max-width: 200px;
-  }
+  .testimonial-card {
+    width: 90%;
+  }}</style>
 
-}</style>
-  
 </head>
 <body>
  
@@ -556,112 +747,179 @@ body {
  
 
 
-  <!-- Products Section -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/Css/T.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/Css/index.css">
 </head>
 <body>
-<section class="products-section">
-  <div class="product-card">
-    <div class="image-wrapper">
-      <img src="/Photo/Pandora (1).jfif" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">اسم محصول</h3>
-      <p class="product-price">₺99</p>
-      <div class="product-actions">
-        <button class="favorite-btn">❤️</button>
-        <button class="add-cart-btn">افزودن به سبد</button>
+  <section class="products-section">
+  <h2 class="section-title">محصولات</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-image">
+        <img src="/Photo/Pandora (1).jfif" alt="Product 1">
+        <div class="product-actions">
+          <button class="wishlist">❤️</button>
+          <button class="add-to-cart">🛒</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>عطر صورتی ملایم</h3>
+        <p class="price">۲۸۰٬۰۰۰ تومان</p>
       </div>
     </div>
-  </div>
  
-  <div class="product-card">
-    <div class="image-wrapper">
-      <img src="/Photo/zereshki.jfif" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">اسم محصول</h3>
-      <p class="product-price">₺79</p>
-      <div class="product-actions">
-        <button class="favorite-btn">❤️</button>
-        <button class="add-cart-btn">افزودن به سبد</button>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="/Photo/Pandora (1).jfif" alt="Product 2">
+        <div class="product-actions">
+          <button class="wishlist">❤️</button>
+          <button class="add-to-cart">🛒</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>روژ لب مخملی</h3>
+        <p class="price">۱۸۰٬۰۰۰ تومان</p>
       </div>
     </div>
-  </div>
- 
-  <div class="product-card">
-    <div class="image-wrapper">
-      <img src="/Photo/Pandora (1).jfif" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">اسم محصول</h3>
-      <p class="product-price">₺59</p>
-      <div class="product-actions">
-        <button class="favorite-btn">❤️</button>
-        <button class="add-cart-btn">افزودن به سبد</button>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="/Photo/Pandora (1).jfif" alt="Product 2">
+        <div class="product-actions">
+          <button class="wishlist">❤️</button>
+          <button class="add-to-cart">🛒</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>روژ لب مخملی</h3>
+        <p class="price">۱۸۰٬۰۰۰ تومان</p>
       </div>
     </div>
-  </div>
-</section>
  
-<section class="products-section">
-  <div class="product-card">
-    <div class="image-wrapper">
-      <img src="/Photo/Pandora (1).jfif" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">اسم محصول</h3>
-      <p class="product-price">₺99</p>
-      <div class="product-actions">
-        <button class="favorite-btn">❤️</button>
-        <button class="add-cart-btn">افزودن به سبد</button>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="/Photo/Pandora (1).jfif" alt="Product 3">
+        <div class="product-actions">
+          <button class="wishlist">❤️</button>
+          <button class="add-to-cart">🛒</button>
+        </div>
       </div>
-    </div>
-  </div>
- 
-  <div class="product-card">
-    <div class="image-wrapper">
-      <img src="/Photo/zereshki.jfif" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">اسم محصول</h3>
-      <p class="product-price">₺79</p>
-      <div class="product-actions">
-        <button class="favorite-btn">❤️</button>
-        <button class="add-cart-btn">افزودن به سبد</button>
-      </div>
-    </div>
-  </div>
- 
-  <div class="product-card">
-    <div class="image-wrapper">
-      <img src="/Photo/Pandora (1).jfif" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">اسم محصول</h3>
-      <p class="product-price">₺59</p>
-      <div class="product-actions">
-        <button class="favorite-btn">❤️</button>
-        <button class="add-cart-btn">افزودن به سبد</button>
+      <div class="product-info">
+        <h3>ادکلن زنانه Lovely</h3>
+        <p class="price">۳۶۰٬۰۰۰ تومان</p>
       </div>
     </div>
   </div>
 </section>
- 
-<link rel="stylesheet" href="style.css">
 </body>
 </html>
-</body>
+
+<!-- محصولات -->
+<section class="products-section">
+  <!-- کارت‌های محصولاتت اینجا هستن -->
+</section>
  
+<!-- 💅 بخش دسته‌بندی‌ها -->
+<section class="categories">
+  <h2 class="section-title">دسته‌بندی‌ها</h2>
+  <div class="category-list">
+    <div class="category-card">
+      <img src="https://via.placeholder.com/150" alt="دسته ۱">
+      <p>لباس</p>
+    </div>
+    <div class="category-card">
+      <img src="https://via.placeholder.com/150" alt="دسته ۲">
+      <p>آرایشی</p>
+    </div>
+    <div class="category-card">
+      <img src="https://via.placeholder.com/150" alt="دسته ۳">
+      <p>اکسسوری</p>
+    </div>
+    <div class="category-card">
+      <img src="https://via.placeholder.com/150" alt="دسته ۴">
+      <p>عطر و اسپری</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- 💖 پیشنهاد ویژه -->
+<section class="special-offer">
+  <h2>پیشنهاد ویژه امروز</h2>
+  <p>تا ۳۰٪ تخفیف روی محصولات منتخب 💕</p>
+  <button>مشاهده پیشنهادات</button>
+</section>
+ 
+<!-- ✨ بنر میانی -->
+<section class="mid-banner">
+  <div class="banner-text">
+    <h2>زیبایی یعنی انتخاب‌های ظریف 💖</h2>
+    <button>محصولات محبوب</button>
+  </div>
+</section>
+ 
+<!-- 💬 نظرات مشتریان -->
+<section class="testimonials">
+  <h2 class="section-title">نظرات مشتریان</h2>
+  <div class="testimonial-list">
+    <div class="testimonial-card">
+      <p>🌟 محصولات عالی و بسته‌بندی شیک!</p>
+      <span>- سارا</span>
+    </div>
+    <div class="testimonial-card">
+      <p>❤️ کیفیت بالا و ارسال سریع.</p>
+      <span>- نازنین</span>
+    </div>
+    <div class="testimonial-card">
+      <p>💖 تجربه خرید خیلی خوبی بود.</p>
+      <span>- مهسا</span>
+    </div>
+  </div>
+</section>
+  
+<!-- 🌟 ویژگی‌های فروشگاه -->
+<section class="features">
+  <div class="feature">
+    🚚 <p>ارسال سریع</p>
+  </div>
+  <div class="feature">
+    👌🏻 <p>کیفیت تظمینی</p>
+  </div>
+  <div class="feature">
+    🎁 <p>بسته‌بندی شیک</p>
+  </div>
+  <div class="feature">
+    💬 <p>پشتیبانی آنلاین</p>
+  </div>
+</section>
+ 
+<!-- 💌 خبرنامه -->
+<section class="newsletter">
+  <h2>از تخفیف‌ها باخبر شو 💌</h2>
+  <p>ایمیلت رو بنویس تا اولین نفر باشی!</p>
+  <div class="newsletter-input">
+    <input type="email" placeholder="ایمیل شما">
+    <button>ثبت</button>
+  </div>
+</section>
+ 
+<!-- 🌸 فوتر -->
+<footer class="footer">
+  <p>© 2025 Venusacs | Developer @Baha_tmn</p>
+  <div class="socials">
+    <a href="#">📸</a>
+    <a href="#">💬</a>
+    <a href="#">📱</a>
+  </div>
+</footer>
+ 
+<link rel="stylesheet" href="style.css">
+ 
+</body>
+</html>
 
-
-
-
-
+ 
 
